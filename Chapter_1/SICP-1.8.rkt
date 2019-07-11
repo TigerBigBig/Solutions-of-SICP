@@ -1,14 +1,13 @@
 #lang sicp
 
-(define (cube-root guess1 guess2 x)
-(if (good-enough? guess1 guess2 x)
-    guess2
-    (cube-root guess2
-               (improve guess2 x)
+(define (cube-root guess x)
+(if (good-enough? guess x)
+    guess
+    (cube-root (improve guess x)
                x)))
 
-(define (good-enough? guess1 guess2 x)
-(if (< (/ (abs (- guess1 guess2)) guess2) 0.00000000000001)
+(define (good-enough? guess x)
+(if (< (/ (abs (- guess (improve guess x))) (improve guess x)) 0.00000000000001)
     #t
     #f
 ))
